@@ -15,10 +15,10 @@ export const SAME_SITE_OPTIONS = {
 };
 
 export const VISIBLE_OPTIONS = {
-  HIDDEN: 'hidden',
-  SHOW: 'show',
-  BY_COOKIE_VALUE: 'byCookieValue'
-}
+  HIDDEN: "hidden",
+  SHOW: "show",
+  BY_COOKIE_VALUE: "byCookieValue",
+};
 
 /**
  * Returns the value of the consent cookie
@@ -190,7 +190,14 @@ class CookieConsent extends Component {
       cookieSecurity = location ? location.protocol === "https:" : true;
     }
 
-    let cookieOptions = { expires, ...extraCookieOptions, sameSite, secure: cookieSecurity };
+    const expiresValue = typeof expires === "function" ? expires(cookieValue) : expires;
+
+    let cookieOptions = {
+      expiresValue: expires,
+      ...extraCookieOptions,
+      sameSite,
+      secure: cookieSecurity,
+    };
 
     // Fallback for older browsers where can not set SameSite=None, SEE: https://web.dev/samesite-cookie-recipes/#handling-incompatible-clients
     if (sameSite === SAME_SITE_OPTIONS.NONE) {

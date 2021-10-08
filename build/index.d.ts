@@ -22,7 +22,7 @@ export interface CookieConsentProps {
   declineCookieValue?: string | boolean | number;
   setDeclineCookie?: boolean;
   debug?: boolean;
-  expires?: number;
+  expires?: number | ((value: string | number | boolean) => number);
   containerClasses?: string;
   contentClasses?: string;
   buttonWrapperClasses?: string;
