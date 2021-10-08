@@ -193,7 +193,7 @@ class CookieConsent extends Component {
     const expiresValue = typeof expires === "function" ? expires(cookieValue) : expires;
 
     let cookieOptions = {
-      expiresValue: expires,
+      expires: expiresValue,
       ...extraCookieOptions,
       sameSite,
       secure: cookieSecurity,

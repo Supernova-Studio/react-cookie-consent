@@ -483,9 +483,12 @@
                   r = n.expires,
                   i = n.sameSite,
                   c = this.props.cookieSecurity;
-                void 0 === c && (c = !location || "https:" === location.protocol),
-                  "function" == typeof r && r(t);
-                var a = f(f({ expiresValue: r }, o), {}, { sameSite: i, secure: c });
+                void 0 === c && (c = !location || "https:" === location.protocol);
+                var a = f(
+                  f({ expires: "function" == typeof r ? r(t) : r }, o),
+                  {},
+                  { sameSite: i, secure: c }
+                );
                 i === g.NONE && l().set(x(e), t, a), l().set(e, t, a);
               },
             },
